@@ -1,3 +1,4 @@
+import { io } from "next/cache";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { isEmailAllowed, normalizeEmail } from "./allowlist";
@@ -12,6 +13,10 @@ export type AllowedUser = {
  * getClaims()는 JWT 서명을 검증하므로 쿠키 값을 그대로 믿지 않는다.
  */
 export async function getAllowedUser(): Promise<AllowedUser | null> {
+  // getClaims()는 만료 시각을 현재 시각과 비교한다. 미리 그려 두는 단계에서는 실행하지 않고
+  // 실제 요청에서만 실행하게 한다. 이 줄이 없으면 개발 서버에 Date.now() 오류가 찍힌다.
+  await io();
+
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase.auth.getClaims();
   if (error || !data) return null;
