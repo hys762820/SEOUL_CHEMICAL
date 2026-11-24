@@ -1,6 +1,6 @@
 # 협업 규칙
 
-2026-11-23
+2026-11-24
 
 ## 브랜치
 
@@ -34,6 +34,7 @@
 - 직접 읽거나 AI에게 맡김. 지시 예: "열린 PR 전체와 develop을 함께 보고, AGENTS.md 위반, PR끼리 겹치는 파일, 같은 용도로 따로 만든 코드와 표를 찾아 줘."
 - PR에 적힌 공용 파일 요청(메뉴 추가 등)을 반영.
 - 동작은 PR에 적힌 확인 방법으로 확인.
+- 남의 표를 바꿔 달라는 요청은 병합 담당자가 표 파일을 만들어 `npm run db:apply -- --force`로 반영. 개발 DB가 어긋나면 develop에서 `npm run db:reset -- --yes`로 다시 만듦.
 - API 키가 올라갔으면 폐기하고 재발급. 고객 정보가 올라갔으면 저장소 관리자가 비공개로 바꾸고 이력에서 지움. 파일만 지우면 이력에 남음.
 
 ## AI 도구
@@ -41,5 +42,5 @@
 - 여러 기능이 함께 쓰는 코드(로그인, 메뉴, `lib/shared/`, `collection_runs` 표)는 한 사람이 먼저 develop에 넣음. 나머지는 그것을 받은 뒤 시작.
 - 기능 하나는 한 번에 한 사람이 맡음. 여럿이 필요하면 기능을 더 잘게 나눔.
 - 바꾸면 PR에 적는 파일: `package.json`, `AGENTS.md`, `vercel.json`, `supabase/migrations/`.
-- 고치지 않고 필요한 내용만 PR에 적는 파일: `app/(app)/layout.tsx`, `app/(app)/page.tsx`, `proxy.ts`, `next.config.ts`, `lib/supabase/`, `lib/auth/`, `lib/shared/`.
-- 비밀 값은 `.env.local`과 Vercel 환경 변수에만 둠.
+- 고치지 않고 필요한 내용만 PR에 적는 파일: `app/(app)/layout.tsx`, `app/(app)/page.tsx`, `proxy.ts`, `next.config.ts`, `lib/supabase/`, `lib/auth/`, `lib/shared/`, `scripts/`, 다른 사람이 만든 표.
+- 비밀 값은 `.env.local`(병합 담당자에게 받음)과 Vercel 환경 변수에만 둠.
