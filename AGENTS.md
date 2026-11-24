@@ -15,7 +15,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **공개 저장소**: 실제 고객명, 팩스번호, 견적 금액, 회사 내부 자료를 코드, 샘플, 테스트, 커밋 메시지에 넣지 않는다. 샘플은 가명(A-1, A-2)과 가짜 번호로 만든다.
 - **발송**: 담당자가 승인한 건만 보낸다. 기본은 모의 발송이고 화면에 '모의 발송'이라고 표시한다. 실제 발송은 `REAL_SEND_ENABLED`가 `true`일 때만 하고, API 키가 있어도 이 값이 없으면 모의 발송이다.
 - **환경 변수**: Supabase는 `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`만 쓴다. `ANON_KEY`, `SERVICE_ROLE_KEY`는 대체값으로도 쓰지 않는다.
-- **DB**: 서버 코드에서 secret 키로 읽고 쓴다. 모든 표에 RLS를 켜고 정책은 만들지 않는다. `anon`, `authenticated`에게 읽기를 여는 정책을 만들거나 권하지 않는다.
+- **DB**: 서버 코드에서 secret 키로 읽고 쓴다. 모든 표에 RLS를 켜고 정책은 만들지 않는다. 새 표에는 `service_role`에게만 권한을 준다(`grant select, insert, update, delete`). `anon`, `authenticated`에게 읽기를 여는 정책을 만들거나 권하지 않는다.
 - **권한 확인**: 사용자 요청으로 DB를 읽거나 쓰는 페이지, Server Action, API Route는 로그인과 허용 목록을 먼저 확인한다. 예약 실행 경로는 `CRON_SECRET`으로 확인한다.
 - **로그인**: 구글 로그인만 쓴다. 로그인 확인 코드가 있으면 그것을 쓰고, 없으면 만들지 말고 먼저 묻는다.
 - **예약 실행**: Vercel Schedules만 쓴다. `vercel.json`의 `crons`와 Supabase `pg_cron`은 쓰지 않는다. 무료 요금제의 최소 간격은 15분이다. 시간대는 항상 서울로 지정한다.
