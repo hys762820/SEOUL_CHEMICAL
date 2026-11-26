@@ -6,8 +6,8 @@
 
 | 주소 | 화면 | 파일 |
 | --- | --- | --- |
-| `/dispatch` | 견적 | `page.tsx` |
-| `/dispatch/delivery` | 배차 | `delivery/page.tsx` |
+| `/quote` | 견적 | `page.tsx` |
+| `/quote/delivery` | 배차 | `delivery/page.tsx` |
 
 ## 폴더 안
 
@@ -21,7 +21,7 @@
 
 ## 폴더 밖
 
-- 표와 샘플 데이터는 `supabase/migrations/`, `supabase/seeds/dispatch.sql`에 추가한다. 표 이름은 `dispatch_`로 시작한다.
+- 표와 샘플 데이터는 `supabase/migrations/`, `supabase/seeds/quote.sql`에 추가한다. 표 이름은 `quote_`로 시작한다.
 - 메뉴 등록, 예약 실행, 공용 코드 변경은 고치지 말고 PR에 적는다.
 
 규칙 전체는 저장소 최상위의 `AGENTS.md`에 있다. 화면이나 외부 서비스가 바뀌면 이 파일을 고친다.

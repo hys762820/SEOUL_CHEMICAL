@@ -46,7 +46,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   | --- | --- | --- |
   | 기상 | `app/(app)/weather/` | `yoonsu` |
   | 입찰 | `app/(app)/bid/` | `sanghyeop` |
-  | 접수및견적 | `app/(app)/dispatch/` | `minji` |
+  | 접수및견적 | `app/(app)/quote/` | `minji` |
   | 뉴스 | `app/(app)/news/` | 미정 |
   | 동향 | `app/(app)/trends/` | 미정 |
   | 규제 | 미정 | 미정 |
