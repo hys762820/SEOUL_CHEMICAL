@@ -33,11 +33,11 @@ const MENU: MenuItem[] = [
     ],
   },
   {
-    href: "/dispatch",
+    href: "/quote",
     label: "견적·배차",
     sub: [
-      { href: "/dispatch", label: "견적", icon: "doc" },
-      { href: "/dispatch/delivery", label: "배차", icon: "truck" },
+      { href: "/quote", label: "견적", icon: "doc" },
+      { href: "/quote/delivery", label: "배차", icon: "truck" },
     ],
   },
 ];
