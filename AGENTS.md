@@ -47,9 +47,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   | 기상 | `app/(app)/weather/` | `yoonsu` |
   | 입찰 | `app/(app)/bid/` | `sanghyeop` |
   | 접수및견적 | `app/(app)/quote/` | `minji` |
-  | 뉴스 | `app/(app)/news/` | 미정 |
-  | 동향 | `app/(app)/trends/` | 미정 |
-  | 규제 | 미정 | 미정 |
+  | 뉴스 | `app/(app)/news/` | `gaeun` |
+  | 동향 | `app/(app)/trends/` | `kimdohun` |
+  | 규제 | `app/(app)/regulation/` | `minjeong` |
 
 - **분야 폴더 밖**: `supabase/migrations/`와 `supabase/seeds/`에 자기 파일을 추가하는 것만 한다. 공용 코드(`lib/supabase/`, `lib/auth/`, `lib/shared/`)와 공용 파일(`app/(app)/layout.tsx`, `app/(app)/page.tsx`, `proxy.ts`, `next.config.ts`, `scripts/`)은 고치지 않는다. 메뉴 등록, 예약 실행 경로(`app/api/cron/`)와 설정이 필요하면 고치지 말고 무엇이 필요한지 알린다.
 - **외부 서비스**: `app/(app)/<분야>/_adapters/<서비스>/`에 인터페이스, 샘플 구현, 실제 구현으로 나눈다. API 키가 없으면 샘플 구현이 동작해야 한다. 두 분야 이상이 함께 쓰는 서비스(팩스, 메일 발송 등)는 `lib/adapters/<서비스>/`에 두고, 만들기 전에 병합 담당자에게 알린다.
