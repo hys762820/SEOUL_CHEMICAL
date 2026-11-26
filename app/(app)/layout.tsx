@@ -45,12 +45,6 @@ const MENU: MenuItem[] = [
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {/* 화면 글꼴(Pretendard). 인터넷이 없으면 맑은 고딕으로 보인다. */}
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-        precedence="default"
-      />
       <AppShell
         menu={MENU}
         headerRight={
