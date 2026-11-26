@@ -40,6 +40,11 @@ const MENU: MenuItem[] = [
       { href: "/quote/delivery", label: "배차", icon: "truck" },
     ],
   },
+  {
+    href: "/regulation",
+    label: "규제",
+    sub: [{ href: "/regulation", label: "규제", icon: "doc" }],
+  },
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
