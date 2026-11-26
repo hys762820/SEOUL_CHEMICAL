@@ -2,6 +2,7 @@ import { io } from "next/cache";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { isEmailAllowed, normalizeEmail } from "./allowlist";
+import { DEV_BYPASS_USER, isAuthBypassed } from "./dev-bypass";
 
 export type AllowedUser = {
   id: string;
@@ -16,6 +17,9 @@ export async function getAllowedUser(): Promise<AllowedUser | null> {
   // getClaims()는 만료 시각을 현재 시각과 비교한다. 미리 그려 두는 단계에서는 실행하지 않고
   // 실제 요청에서만 실행하게 한다. 이 줄이 없으면 개발 서버에 Date.now() 오류가 찍힌다.
   await io();
+
+  // 로컬 개발 서버에서 AUTH_BYPASS_DEV=true 이면 로그인을 건너뛴다. 배포 환경에서는 적용되지 않는다.
+  if (isAuthBypassed()) return DEV_BYPASS_USER;
 
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase.auth.getClaims();

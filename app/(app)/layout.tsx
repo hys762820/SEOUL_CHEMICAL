@@ -1,4 +1,5 @@
 import { signOut } from "@/app/auth/actions";
+import { isAuthBypassed } from "@/lib/auth/dev-bypass";
 import { AppShell, type MenuItem } from "./app-shell";
 
 // 메뉴. 상단 메뉴 한 줄에 왼쪽 메뉴(sub)를 함께 적는다.
@@ -53,6 +54,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <AppShell
         menu={MENU}
         headerRight={
+          isAuthBypassed() ? (
+            // 로컬 개발 서버에서 로그인을 건너뛴 상태. 로그아웃할 세션이 없으므로 표시만 한다.
+            <span className="rounded-md border border-[#e0a100] bg-[#fff7e0] px-3 py-1 text-[12.5px] font-semibold text-[#7a5200]">
+              로그인 생략 중
+            </span>
+          ) : (
           <form action={signOut}>
             <button
               type="submit"
@@ -61,6 +68,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               로그아웃
             </button>
           </form>
+          )
         }
       >
         {children}
