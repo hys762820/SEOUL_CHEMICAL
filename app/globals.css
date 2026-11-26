@@ -12,6 +12,22 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* 서울케미칼 화면 틀의 색과 글꼴. 로고의 남색(#1f2a61)과 하늘색(#1c96cc)을 기준으로 한다.
+   예: text-brand-navy, bg-brand-sky, border-line, bg-canvas, font-pretendard */
+@theme {
+  --color-brand-navy: #1f2a61;
+  --color-brand-navy-hover: #2a3778;
+  --color-brand-sky: #1c96cc;
+  --color-brand-sky-pale: #eaf6fc;
+  --color-ink: #1b2140;
+  --color-muted: #5f6783;
+  --color-faint: #8a90a6;
+  --color-line: #e3e7ef;
+  --color-line-soft: #eef1f6;
+  --color-canvas: #f6f8fb;
+  --font-pretendard: Pretendard, "Malgun Gothic", "맑은 고딕", system-ui, sans-serif;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
