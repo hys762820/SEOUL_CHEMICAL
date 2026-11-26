@@ -1,0 +1,28 @@
+# 기상
+
+담당 브랜치: `yoonsu`
+
+## 화면
+
+| 주소 | 화면 | 파일 |
+| --- | --- | --- |
+| `/weather` | 강설 예보 | `page.tsx` |
+| `/weather/history` | 발송 이력 | `history/page.tsx` |
+| `/weather/settings` | 알림 설정 | `settings/page.tsx` |
+
+## 폴더 안
+
+| 위치 | 내용 |
+| --- | --- |
+| `_components/` | 이 분야만 쓰는 화면 조각 |
+| `_lib/` | 로직 |
+| `_adapters/<서비스>/` | 외부 서비스 연결(인터페이스, 샘플 구현, 실제 구현) |
+
+필요한 폴더는 처음 파일을 만들 때 함께 만든다.
+
+## 폴더 밖
+
+- 표와 샘플 데이터는 `supabase/migrations/`, `supabase/seeds/weather.sql`에 추가한다. 표 이름은 `weather_`로 시작한다.
+- 메뉴 등록, 예약 실행, 공용 코드 변경은 고치지 말고 PR에 적는다.
+
+규칙 전체는 저장소 최상위의 `AGENTS.md`에 있다. 화면이나 외부 서비스가 바뀌면 이 파일을 고친다.

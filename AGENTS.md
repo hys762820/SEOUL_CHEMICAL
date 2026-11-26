@@ -28,7 +28,30 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   ```
 
 - **수집 기록**: 실행할 때마다 `collection_runs` 표에 출처, 시작·종료 시각, 성공 여부, 오류 내용을 기록한다. 실패해도 기록한다.
-- **외부 서비스**: `lib/adapters/<서비스>/`에 인터페이스, 샘플 구현, 실제 구현으로 나눈다. API 키가 없으면 샘플 구현이 동작해야 한다.
-- **구조**: 기능 하나는 `app/(app)/<기능>/`(화면과 그 화면만 쓰는 파일)과 `lib/<기능>/`(로직)에 둔다. 공용 코드는 `lib/supabase/`, `lib/auth/`, `lib/shared/`에 있다. 메뉴는 `app/(app)/layout.tsx`에 등록되어 있다. 기능 작업에서는 공용 코드와 공용 파일(`app/(app)/layout.tsx`, `app/(app)/page.tsx`, `proxy.ts`, `next.config.ts`, `scripts/`)을 고치지 않는다. 필요하면 고치지 말고 무엇이 필요한지 알린다.
-- **샘플 데이터**: `supabase/seeds/<기능>.sql`에 두고 `npm run db:apply`로 넣는다. 다시 실행해도 되게 쓴다.
-- **표 구조 변경**: `npx supabase migration new <이름>`으로 새 파일을 만들어 쓰고 `npm run db:apply`로 반영한다. 파일 이름의 번호를 직접 짓지 않는다. 이미 반영된 마이그레이션 파일은 고치지 않는다. 표 이름은 기능 이름으로 시작한다. 다른 사람이 만든 표와 공용 표는 고치지 않고, 필요하면 알린다. `supabase db push`, `migration up`, `migration repair`, `npm run db:reset`은 실행하지 않는다.
+- **구조**: 분야 하나는 `app/(app)/<분야>/` 한 폴더에 둔다. 담당자는 자기 분야 폴더 안에서만 작업한다.
+
+  | 폴더 안 위치 | 내용 |
+  | --- | --- |
+  | `page.tsx`, 하위 주소 폴더 | 화면 |
+  | `_components/` | 이 분야만 쓰는 화면 조각 |
+  | `_lib/` | 로직 |
+  | `_adapters/<서비스>/` | 외부 서비스 연결 |
+  | `<분야>.md` (예: `weather.md`) | 담당, 화면 목록, 폴더 안내 |
+
+  이름이 `_`로 시작하는 폴더는 주소가 되지 않는다. 필요한 폴더는 처음 파일을 만들 때 함께 만든다. 작업 전에 `<분야>.md`를 읽고, 화면이나 외부 서비스가 바뀌면 고친다.
+
+- **담당**: 브랜치 이름으로 적는다. 다른 분야의 폴더는 고치지 않고, 필요하면 알린다.
+
+  | 분야 | 폴더 | 담당 브랜치 |
+  | --- | --- | --- |
+  | 기상 | `app/(app)/weather/` | `yoonsu` |
+  | 입찰 | `app/(app)/bid/` | `sanghyeop` |
+  | 접수및견적 | `app/(app)/dispatch/` | `minji` |
+  | 뉴스 | `app/(app)/news/` | 미정 |
+  | 동향 | `app/(app)/trends/` | 미정 |
+  | 규제 | 미정 | 미정 |
+
+- **분야 폴더 밖**: `supabase/migrations/`와 `supabase/seeds/`에 자기 파일을 추가하는 것만 한다. 공용 코드(`lib/supabase/`, `lib/auth/`, `lib/shared/`)와 공용 파일(`app/(app)/layout.tsx`, `app/(app)/page.tsx`, `proxy.ts`, `next.config.ts`, `scripts/`)은 고치지 않는다. 메뉴 등록, 예약 실행 경로(`app/api/cron/`)와 설정이 필요하면 고치지 말고 무엇이 필요한지 알린다.
+- **외부 서비스**: `app/(app)/<분야>/_adapters/<서비스>/`에 인터페이스, 샘플 구현, 실제 구현으로 나눈다. API 키가 없으면 샘플 구현이 동작해야 한다. 두 분야 이상이 함께 쓰는 서비스(팩스, 메일 발송 등)는 `lib/adapters/<서비스>/`에 두고, 만들기 전에 병합 담당자에게 알린다.
+- **샘플 데이터**: `supabase/seeds/<분야>.sql`에 두고 `npm run db:apply`로 넣는다. 다시 실행해도 되게 쓴다.
+- **표 구조 변경**: `npx supabase migration new <이름>`으로 새 파일을 만들어 쓰고 `npm run db:apply`로 반영한다. 파일 이름의 번호를 직접 짓지 않는다. 이미 반영된 마이그레이션 파일은 고치지 않는다. 표 이름은 분야 폴더 이름으로 시작한다(예: `weather_`). 다른 사람이 만든 표와 공용 표는 고치지 않고, 필요하면 알린다. `supabase db push`, `migration up`, `migration repair`, `npm run db:reset`은 실행하지 않는다.
